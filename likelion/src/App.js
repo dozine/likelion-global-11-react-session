@@ -1,41 +1,123 @@
+import { useState, useEffect } from "react";
+import Item from "./Item";
 function App() {
+  const [countA, setCountA] = useState(0);
+  const [countB, setCountB] = useState(0);
+  const [countC, setCountC] = useState(0);
+  const [changed, setChanged] = useState(0);
+  const [checked, setChecked] = useState(0);
+
+  useEffect(() => {
+    setChanged("A");
+  }, [countA]);
+  useEffect(() => {
+    setChanged("B");
+  }, [countB]);
+  useEffect(() => {
+    setChanged("C");
+  }, [countC]);
+  useEffect(() => {
+    setChecked("");
+  }, [checked]);
   return (
     <>
       <article>
+        <section className={"changed"}>
+          <h1>방금 변경된 아이템</h1>
+          <div>{changed}</div>
+        </section>
+        <section className={"checked"}>
+          <h1>체크된 아이템 개수</h1>
+          <div>{checked}</div>
+        </section>
         {/* 아이템 리스트 */}
         <section className={"list"}>
           <h1>아이템 리스트</h1>
           <ol>
             {/* 아이템 A */}
             <li>
+              <input
+                type="checkbox"
+                onChange={() => {
+                  setChecked(checked + 1);
+                }}
+              ></input>
               <span>A</span>
               <div>
-                <div>0</div>
+                <div>{countA}</div>
                 <div className={"button-list"}>
-                  <button>-</button>
-                  <button>+</button>
+                  <button
+                    onClick={() => {
+                      setCountA(countA - 1); //setState
+                    }}
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={() => {
+                      setCountA(countA + 1); //setState
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </li>
             {/* 아이템 B */}
             <li>
+              <input
+                type="checkbox"
+                onChange={() => {
+                  setChecked(checked + 1);
+                }}
+              ></input>
               <span>B</span>
               <div>
-                <div>0</div>
+                <div>{countB}</div>
                 <div className={"button-list"}>
-                  <button>-</button>
-                  <button>+</button>
+                  <button
+                    onClick={() => {
+                      setCountB(countB - 1); //setState
+                    }}
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={() => {
+                      setCountB(countB + 1); //setState
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </li>
             {/* 아이템 C */}
             <li>
+              <input
+                type="checkbox"
+                onChange={() => {
+                  setChecked(checked + 1);
+                }}
+              ></input>
               <span>C</span>
               <div>
-                <div>0</div>
+                <div>{countC}</div>
                 <div className={"button-list"}>
-                  <button>-</button>
-                  <button>+</button>
+                  <button
+                    onClick={() => {
+                      setCountC(countC - 1); //setState
+                    }}
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={() => {
+                      setCountC(countC + 1); //setState
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </li>
